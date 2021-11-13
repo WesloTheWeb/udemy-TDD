@@ -7,17 +7,26 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 test('renders a non-empty component without crashing', () => {
   const wrapper = shallow(<App />);
-  expect(wrapper.exists()).toBe(true);
+  const appComponent = wrapper.find("[data-test='component-app']")
+
+  expect(appComponent.length).toBe(1);
 });
 
 // For TDD (Test Driven Development) we'd want to write our test cases first before code.
+// We'd want to make them red, and then green.
 
 test('renders increment button', () => {
+  const wrapper = shallow(<App />);
+  const button = wrapper.find("[data-test='increment-button']")
 
+  expect(button.length).toBe(1);
 });
 
 test('shows the counter display', () => {
+  const wrapper = shallow(<App />);
+  const counterDisplay = wrapper.find("[data-test='counter-display']")
 
+  expect(counterDisplay.length).toBe(1);
 });
 
 test('counter display starts at 0', () => {
