@@ -26,6 +26,13 @@ test('renders increment button', () => {
   expect(button.length).toBe(1);
 });
 
+test('renders decrement button', () => {
+  const wrapper = setup();
+  const button = findByTestAttribute(wrapper, "decrement-button");
+
+  expect(button.length).toBe(1);
+});
+
 test('shows the counter display', () => {
   const wrapper = setup();
   const counterDisplay = findByTestAttribute(wrapper, "counter-display");
