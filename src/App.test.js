@@ -46,7 +46,7 @@ test('shows the error message when count is below 0.', () => {
 
   button.simulate('click');
 
-  const errorMessage = findByTestAttribute(wrapper, "error-message-display.");
+  const errorMessage = findByTestAttribute(wrapper, "error-message-display");
 
   expect(errorMessage.length).toBe(1);
 });
@@ -61,11 +61,9 @@ test('counter display starts at 0.', () => {
 test('clicking button increments counter display.', () => {
   const wrapper = setup();
   // find the button
-  const button = findByTestAttribute(wrapper, "increment-button.");
-
+  const button = findByTestAttribute(wrapper, "increment-button");
   // click the button
   button.simulate('click');
-
   // find the display, and test that the number has been incremented
   const count = findByTestAttribute(wrapper, "count").text(); // always checks against a string.
   expect(count).toBe("1");
