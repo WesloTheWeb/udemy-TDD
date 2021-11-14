@@ -9,7 +9,7 @@ const setup = () => shallow(<App />);
 
 const findByTestAttribute = (wrapper, val) => wrapper.find(`[data-test='${val}']`);
 
-test('renders a non-empty component without crashing', () => {
+test('renders a non-empty component without crashing.', () => {
   const wrapper = setup();
   const appComponent = findByTestAttribute(wrapper, "component-app");
 
@@ -19,38 +19,49 @@ test('renders a non-empty component without crashing', () => {
 // For TDD (Test Driven Development) we'd want to write our test cases first before code.
 // We'd want to make them red, and then green.
 
-test('renders increment button', () => {
+test('renders increment button.', () => {
   const wrapper = setup();
   const button = findByTestAttribute(wrapper, "increment-button");
 
   expect(button.length).toBe(1);
 });
 
-test('renders decrement button', () => {
+test('renders decrement button.', () => {
   const wrapper = setup();
   const button = findByTestAttribute(wrapper, "decrement-button");
 
   expect(button.length).toBe(1);
 });
 
-test('shows the counter display', () => {
+test('shows the counter display.', () => {
   const wrapper = setup();
   const counterDisplay = findByTestAttribute(wrapper, "counter-display");
 
   expect(counterDisplay.length).toBe(1);
 });
 
-test('counter display starts at 0', () => {
+test('shows the error message when count is below 0.', () => {
+  const wrapper = setup();
+  const button = findByTestAttribute(wrapper, "decrement-button");
+
+  button.simulate('click');
+
+  const errorMessage = findByTestAttribute(wrapper, "error-message-display.");
+
+  expect(errorMessage.length).toBe(1);
+});
+
+test('counter display starts at 0.', () => {
   const wrapper = setup();
   const count = findByTestAttribute(wrapper, "count").text(); // always checks against a string.
 
   expect(count).toBe("0");
 });
 
-test('clicking button increments counter display', () => {
+test('clicking button increments counter display.', () => {
   const wrapper = setup();
   // find the button
-  const button = findByTestAttribute(wrapper, "increment-button");
+  const button = findByTestAttribute(wrapper, "increment-button.");
 
   // click the button
   button.simulate('click');
@@ -58,5 +69,14 @@ test('clicking button increments counter display', () => {
   // find the display, and test that the number has been incremented
   const count = findByTestAttribute(wrapper, "count").text(); // always checks against a string.
   expect(count).toBe("1");
+});
+
+test('clicking button decrements counter display.', () => {
+  const wrapper = setup();
+  const button = findByTestAttribute(wrapper, "decrement-button");
+
+  button.simulate('click');
+  const count = findByTestAttribute(wrapper, "count").exists();
   
+  expect(count).toBe(false);
 });

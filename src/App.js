@@ -5,13 +5,18 @@ function App() {
 
   const [count, setCount] = useState(0);
 
-  const handleIncrementClick = () => setCount(count + 1);
+  const handleIncrementClick = () => {
+    if (count > 0) {
+      setCount(count + 1);
+    } else
+      setCount(1);
+  }
 
   const handleDecrementClick = () => {
     if (count > 0) {
       setCount(count - 1);
-    } else 
-      setCount(-1);      
+    } else
+      setCount(-1);
   }
 
   return (
@@ -22,7 +27,7 @@ function App() {
       </h2> : null
       }
       {count < 0 ?
-        <div>ERROR! Cannot go below zero</div> : null
+        <div data-test="error-message-display">ERROR! Cannot go below zero</div> : null
       }
       <div className="button-container">
         <button
